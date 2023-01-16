@@ -87,8 +87,7 @@ namespace Balanovici_Cristina_PrMPA.Controllers
                             Errors(result);
                     }
                 }
-                foreach (string userId in model.DeleteIds ?? new string[] {
-                })
+                foreach (string userId in model.DeleteIds ?? new string[] { })
                 {
                     IdentityUser user = await userManager.FindByIdAsync(userId);
                     if (user != null)
