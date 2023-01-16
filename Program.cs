@@ -17,6 +17,19 @@ builder.Services.AddSignalR();
 
 builder.Services.AddDbContext<IdentityContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
+builder.Services.Configure<IdentityOptions>(options =>
+{
+    options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromSeconds(30);
+    options.Lockout.MaxFailedAccessAttempts = 2;
+    options.Lockout.AllowedForNewUsers = true;
+});
+
+builder.Services.Configure<IdentityOptions>(options =>
+{
+    options.Password.RequiredLength = 6;
+    options.Password.RequireUppercase= true;
+});
+
 builder.Services.AddAuthorization(opts =>
 {
     opts.AddPolicy("OnlyConsult", policy =>
