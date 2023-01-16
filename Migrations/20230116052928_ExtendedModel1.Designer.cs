@@ -4,6 +4,7 @@ using Balanovici_Cristina_PrMPA.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Balanovici_Cristina_PrMPA.Migrations
 {
     [DbContext(typeof(VeterinarContext))]
-    partial class VeterinarContextModelSnapshot : ModelSnapshot
+    [Migration("20230116052928_ExtendedModel1")]
+    partial class ExtendedModel1
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

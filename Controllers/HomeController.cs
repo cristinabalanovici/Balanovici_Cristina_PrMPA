@@ -1,16 +1,31 @@
 ﻿using Balanovici_Cristina_PrMPA.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
-
+using Microsoft.EntityFrameworkCore;
+using Balanovici_Cristina_PrMPA.Data;
+using Balanovici_Cristina_PrMPA.Models.CabinetViewModels;
 namespace Balanovici_Cristina_PrMPA.Controllers
 {
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
 
-        public HomeController(ILogger<HomeController> logger)
+        private readonly VeterinarContext _context;
+        public HomeController(VeterinarContext context)
         {
-            _logger = logger;
+            _context = context;
+        }
+        public async Task<ActionResult> Statistici()
+        {
+            IQueryable<ProgramareGroup> data =
+                from programare in _context.Programari
+                group programare by programare.Data into programareGroup
+                select new ProgramareGroup()
+                {
+                    DataProgramare = programareGroup.Key,
+                    NrProgramari = programareGroup.Count()
+                };
+            return View(await data.AsNoTracking().ToListAsync());
         }
 
         public IActionResult Index()

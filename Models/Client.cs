@@ -12,5 +12,6 @@ namespace Balanovici_Cristina_PrMPA.Models
         public string LastName { get; set; }
         public string Email { get; set; }
         public ICollection<Programare> Programari { get; set; }
+        public ICollection<AnimalInregistrat> AnimaleIntregistrate { get; set; }    
     }
 }

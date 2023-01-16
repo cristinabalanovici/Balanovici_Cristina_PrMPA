@@ -10,6 +10,7 @@ namespace Balanovici_Cristina_PrMPA.Models
         public int ID { get; set; } 
         public string FirstName { get; set; }   
         public string LastName { get; set; }  
+        public DateTime DataAngajare { get; set; }
         public ICollection<Programare> Programari { get; set; }
     }
 }

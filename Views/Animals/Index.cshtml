@@ -1,0 +1,92 @@
+﻿@model Balanovici_Cristina_PrMPA.Models.CabinetViewModels.AnimalIndexData
+
+@{
+    ViewData["Title"] = "Animale";
+}
+
+<h1>Animale</h1>
+
+<p>
+    <a asp-action="Create">Create new</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Nume</th>
+            <th>Rasa</th>
+            <th>Gen</th>
+            <th>Client</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Animale)
+        {
+            string selectedRow = "";
+            if(item.ID == (int?)ViewData["AnimalID"])
+            {
+                selectedRow = "success";
+            }
+            <tr class="@selectedRow">
+                <td>
+                    @Html.DisplayFor(modelItem => item.Nume)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Rasa)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem=> item.Gen)
+                </td>
+                <td>
+                    @{
+                        foreach (var client in item.AnimaleInregistrate)
+                        {
+                            @client.Client.FirstName @:    @client.Client.LastName <br/>
+                        }
+                    }
+                </td>
+                <td>
+                    <a asp-action="Index" asp-route-id="@item.ID">Select</a> |
+                    <a asp-action="Edit" asp-route-id="@item.ID">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.ID">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.ID">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@if (Model.Clienti !=null)
+{
+    <h3>Clientul responsabil pentru animalul selectat</h3>
+    <table class="table">
+        <tr>
+            <th></th>
+            <th>Nume</th>
+            <th>Prenume</th>
+            <th>Email</th>
+        </tr>
+        @foreach (var item in Model.Clienti)
+        {
+            string selectedRow = "";
+            if(item.ID == (int?)ViewData["ClientID"])
+            {
+                selectedRow = "success";
+            }
+            <tr class="@selectedRow">
+                <td>
+                    @Html.ActionLink("Select", "Index", new { clientID = item.ID})
+                </td>
+                <td>
+                    @item.FirstName
+                </td>
+                <td>
+                    @item.LastName
+                </td>
+                <td>
+                    @item.Email
+                </td>
+            </tr>
+        }
+    </table>
+}
