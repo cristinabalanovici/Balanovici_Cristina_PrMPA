@@ -17,11 +17,10 @@ connection.start().then(function () {
     return console.error(err.toString());
 });
 
-document.getElementById("sendButton").addEventListener("click", function (evenet) {
-    var user = document.getElementById("userInput").value;
+document.getElementById("sendButton").addEventListener("click", function (event) {
     var message = document.getElementById("messageInput").value;
-    connection.invoke("SendMessage", user, message).catch(function (err) {
-        return console.errorr(err.toString());
+    connection.invoke("SendMessage", "", message).catch(function (err) {
+        return console.error(err.toString());
     });
     event.preventDefault();
 })

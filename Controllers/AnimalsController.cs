@@ -8,9 +8,11 @@ using Microsoft.EntityFrameworkCore;
 using Balanovici_Cristina_PrMPA.Data;
 using Balanovici_Cristina_PrMPA.Models;
 using Balanovici_Cristina_PrMPA.Models.CabinetViewModels;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Balanovici_Cristina_PrMPA.Controllers
 {
+    [Authorize(Policy ="OnlyConsult")]
     public class AnimalsController : Controller
     {
         private readonly VeterinarContext _context;
