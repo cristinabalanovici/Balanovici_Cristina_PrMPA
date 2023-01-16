@@ -12,7 +12,7 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace Balanovici_Cristina_PrMPA.Controllers
 {
-    [Authorize(Policy ="OnlyConsult")]
+    [Authorize(Policy ="AdminPlat")]
     public class AnimalsController : Controller
     {
         private readonly VeterinarContext _context;
